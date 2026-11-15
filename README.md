@@ -122,9 +122,11 @@ Every night the adapter compares the rules at Amazon with the template and write
 
 ### **WORK IN PROGRESS**
 
-### 0.1.0 (2026-11-15)
+### 0.1.1 (2026-11-15)
 
-- (backfisch88) Initial release
+- (backfisch88) Maintenance: dependencies, translation format
+
+Older changes can be found in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
 ## License
 

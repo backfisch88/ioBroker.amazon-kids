@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "amazon-kids",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+            "0.1.1": {
+                "en": "maintenance: dependencies, translation format",
+                "de": "Wartung: Abhängigkeiten, Übersetzungsformat",
+                "ru": "обслуживание: зависимости, формат переводов",
+                "pt": "manutenção: dependências, formato de tradução",
+                "nl": "onderhoud: afhankelijkheden, vertaalformaat",
+                "fr": "maintenance : dépendances, format de traduction",
+                "it": "manutenzione: dipendenze, formato di traduzione",
+                "es": "mantenimiento: dependencias, formato de traducción",
+                "pl": "konserwacja: zależności, format tłumaczeń",
+                "uk": "обслуговування: залежності, формат перекладів",
+                "zh-cn": "维护：依赖项、翻译格式"
+            },
             "0.1.0": {
                 "en": "initial release",
                 "de": "erste Veröffentlichung",

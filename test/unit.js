@@ -186,10 +186,12 @@ describe('repository consistency', () => {
     });
     it('has identical translation keys in all languages', () => {
         const dir = path.join(root, 'admin', 'i18n');
-        const languages = fs.readdirSync(dir).sort();
+        const languages = fs
+            .readdirSync(dir)
+            .map(file => file.replace(/\.json$/, ''))
+            .sort();
         assert.deepStrictEqual(languages, ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'uk', 'zh-cn']);
-        const keys = lang =>
-            Object.keys(JSON.parse(fs.readFileSync(path.join(dir, lang, 'translations.json'), 'utf8'))).sort();
+        const keys = lang => Object.keys(JSON.parse(fs.readFileSync(path.join(dir, `${lang}.json`), 'utf8'))).sort();
         for (const lang of languages) {
             assert.deepStrictEqual(keys(lang), keys('en'), lang);
         }

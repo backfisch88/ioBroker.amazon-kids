@@ -1,15 +1,15 @@
 {
-    "help_cookies": "Solo es necesario si la página de inicio de sesión no funciona. Inicia sesión en el Panel para padres en un navegador de escritorio, abre las herramientas de desarrollo (F12), ve a \"Red\", recarga la página, haz clic en la primera solicitud y copia el valor completo de la cabecera de solicitud \"cookie\". Pégalo abajo. Cuando Amazon cierre la sesión, tendrás que repetirlo.",
     "baseUrl": "Dirección del Panel para padres",
     "cookies": "Cookies de sesión",
-    "pollInterval": "Intervalo de consulta (minutos)",
-    "timeZone": "Zona horaria (opcional)",
-    "timeZone_help": "Nombre IANA, por ejemplo Europe/Berlin. Vacío usa la zona horaria del sistema.",
+    "header_general": "General",
     "header_login": "Inicio de sesión",
     "header_manual": "Alternativa: pegar cookies de sesión",
-    "header_general": "General",
+    "help_cookies": "Solo es necesario si la página de inicio de sesión no funciona. Inicia sesión en el Panel para padres en un navegador de escritorio, abre las herramientas de desarrollo (F12), ve a \"Red\", recarga la página, haz clic en la primera solicitud y copia el valor completo de la cabecera de solicitud \"cookie\". Pégalo abajo. Cuando Amazon cierre la sesión, tendrás que repetirlo.",
     "help_login": "Guarda la configuración e inicia la instancia. El adaptador ofrece entonces una página de inicio de sesión en http://<IP del host de ioBroker>:<puerto>. La dirección exacta se escribe en el registro y en el estado info.loginUrl. Ábrela en un teléfono u ordenador de tu red doméstica e inicia sesión en Amazon. Después el adaptador renueva la sesión por sí mismo.",
+    "pollInterval": "Intervalo de consulta (minutos)",
     "proxyOwnIp": "Dirección IP del host de ioBroker (opcional)",
     "proxyOwnIp_help": "Vacío: se detecta automáticamente",
-    "proxyPort": "Puerto de la página de inicio de sesión"
+    "proxyPort": "Puerto de la página de inicio de sesión",
+    "timeZone": "Zona horaria (opcional)",
+    "timeZone_help": "Nombre IANA, por ejemplo Europe/Berlin. Vacío usa la zona horaria del sistema."
 }

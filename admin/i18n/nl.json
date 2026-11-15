@@ -1,15 +1,15 @@
 {
-    "help_cookies": "Alleen nodig als de aanmeldpagina niet werkt. Meld je aan bij het Ouderdashboard in een desktopbrowser, open de ontwikkelaarstools (F12), ga naar \"Netwerk\", laad de pagina opnieuw, klik op het eerste verzoek en kopieer de volledige waarde van de verzoekheader \"cookie\". Plak die hieronder. Als Amazon de sessie beëindigt, moet je dit herhalen.",
     "baseUrl": "Adres van het Ouderdashboard",
     "cookies": "Sessiecookies",
-    "pollInterval": "Opvraaginterval (minuten)",
-    "timeZone": "Tijdzone (optioneel)",
-    "timeZone_help": "IANA-naam zoals Europe/Berlin. Leeg gebruikt de tijdzone van het systeem.",
+    "header_general": "Algemeen",
     "header_login": "Aanmelden",
     "header_manual": "Alternatief: sessiecookies plakken",
-    "header_general": "Algemeen",
+    "help_cookies": "Alleen nodig als de aanmeldpagina niet werkt. Meld je aan bij het Ouderdashboard in een desktopbrowser, open de ontwikkelaarstools (F12), ga naar \"Netwerk\", laad de pagina opnieuw, klik op het eerste verzoek en kopieer de volledige waarde van de verzoekheader \"cookie\". Plak die hieronder. Als Amazon de sessie beëindigt, moet je dit herhalen.",
     "help_login": "Sla de instellingen op en start de instantie. De adapter biedt dan een aanmeldpagina aan op http://<IP van de ioBroker-host>:<poort>. Het exacte adres staat in het logboek en in de state info.loginUrl. Open het op een telefoon of computer in je thuisnetwerk en meld je aan bij Amazon. Daarna vernieuwt de adapter de sessie zelf.",
+    "pollInterval": "Opvraaginterval (minuten)",
     "proxyOwnIp": "IP-adres van de ioBroker-host (optioneel)",
     "proxyOwnIp_help": "Leeg: wordt automatisch bepaald",
-    "proxyPort": "Poort van de aanmeldpagina"
+    "proxyPort": "Poort van de aanmeldpagina",
+    "timeZone": "Tijdzone (optioneel)",
+    "timeZone_help": "IANA-naam zoals Europe/Berlin. Leeg gebruikt de tijdzone van het systeem."
 }
