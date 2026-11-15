@@ -1,24 +1,34 @@
-<img src="admin/amazon-kids.png" alt="Logo" width="128">
+<p align="center"><img src="admin/amazon-kids.png" alt="Logo" width="400"></p>
 
 # ioBroker.amazon-kids
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.amazon-kids.svg)](https://www.npmjs.com/package/iobroker.amazon-kids)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Parental controls for Amazon Kids profiles (Fire tablets, Fire Kids tablets) in ioBroker.
+Unofficial parental controls for Amazon Kids profiles (Fire tablets, Fire Kids tablets) in ioBroker.
 
-I use the web endpoints of the [Amazon Kids Parent Dashboard](https://parents.amazon.com) for this. Amazon does not offer a public API, so the adapter can stop working whenever Amazon changes the dashboard. The endpoints come from the Python project [amazon_parent_dashboard](https://github.com/GrantGMiller/amazon_parent_dashboard).
+## ⚠️ Important: Unofficial, may stop working
+
+I use the web endpoints of the [Amazon Kids Parent Dashboard](https://parents.amazon.com) for this. Amazon does not offer a public API, so the adapter can stop working whenever Amazon changes the dashboard. The endpoints come from the Python project [amazon_parent_dashboard](https://github.com/GrantGMiller/amazon_parent_dashboard) and from the dashboard itself.
 
 This adapter is not affiliated with or endorsed by Amazon.
 
+---
+
 ## Features
 
-- Lists the child profiles of the Amazon household
-- Reads the screen time limit of the current day
-- Pauses and resumes the devices of a child
-- Sends bonus time
+- Child profiles, time windows, screen time limit, used and remaining time, usage by app
+- Pause and resume the devices of one child or of all children, add or remove bonus time
+- Change the time windows, the limit, learn-first and the learning goals of today
+- Weekly template that is written back every night, so one-off changes do not stay
+- Smart home access, explicit language filter, blocked and allowed websites per child
+- Maximum volume, Prime Video, music and the explicit lyrics filter per Kids device (experimental)
 
-## Setup
+## Installation
+
+Install via ioBroker Admin UI.
+
+## Configuration
 
 1. Select the Parent Dashboard address of your country in the instance settings (Germany: `https://eltern.amazon.de`) and start the instance.
 2. Read the login address from the log or from the state `info.loginUrl`. It looks like `http://192.168.1.10:3457`.
@@ -41,7 +51,7 @@ Use this if the login page does not work for your account.
 
 Pasted cookies are not renewed. When Amazon ends the session, the adapter logs an error and you have to paste fresh cookies.
 
-## States
+## Datapoints
 
 | State                                                                         | Description                                                                                               |
 | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -106,6 +116,7 @@ Every night the adapter compares the rules at Amazon with the template and write
 - `today.allowedNow` only reflects the time windows. It does not know the used screen time, bonus time or a pause.
 - The used time comes from the activity report of the dashboard. The tablet uploads it with a delay, so `today.usedMinutes` and `today.remainingMinutes` can lag behind.
 - Amazon offers no way to read whether devices are paused. `control.paused` and `control.pausedUntil` only know pauses set through ioBroker.
+- The settings of the Kids devices (`devices.<name>.*`) are experimental. Amazon's answer for the volume and the switches is not verified yet.
 
 ## Changelog
 
