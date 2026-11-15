@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Nur nötig, wenn die Anmeldeseite nicht funktioniert. Melde dich im Eltern-Dashboard in einem Desktop-Browser an, öffne die Entwicklertools (F12), wechsle zu „Netzwerk“, lade die Seite neu, klicke die erste Anfrage an und kopiere den kompletten Wert des Anfrage-Headers „cookie“. Füge ihn unten ein. Wenn Amazon die Sitzung beendet, musst du das wiederholen.",
+    "baseUrl": "Adresse des Eltern-Dashboards",
+    "cookies": "Sitzungs-Cookies",
+    "pollInterval": "Abfrageintervall (Minuten)",
+    "timeZone": "Zeitzone (optional)",
+    "timeZone_help": "IANA-Name wie Europe/Berlin. Leer = Zeitzone des Systems.",
+    "header_login": "Anmeldung",
+    "header_manual": "Alternative: Sitzungs-Cookies einfügen",
+    "header_general": "Allgemein",
+    "help_login": "Speichere die Einstellungen und starte die Instanz. Der Adapter stellt dann unter http://<IP des ioBroker-Hosts>:<Port> eine Anmeldeseite bereit. Die genaue Adresse steht im Log und im Datenpunkt info.loginUrl. Öffne sie am Handy oder Computer in deinem Heimnetz und melde dich bei Amazon an. Danach erneuert der Adapter die Sitzung selbst.",
+    "proxyOwnIp": "IP-Adresse des ioBroker-Hosts (optional)",
+    "proxyOwnIp_help": "Leer: wird automatisch ermittelt",
+    "proxyPort": "Port der Anmeldeseite"
+}

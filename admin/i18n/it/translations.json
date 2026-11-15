@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Necessario solo se la pagina di accesso non funziona. Accedi alla Dashboard genitori in un browser desktop, apri gli strumenti per sviluppatori (F12), vai su \"Rete\", ricarica la pagina, fai clic sulla prima richiesta e copia il valore completo dell'intestazione di richiesta \"cookie\". Incollalo qui sotto. Quando Amazon termina la sessione, devi ripetere l'operazione.",
+    "baseUrl": "Indirizzo della Dashboard genitori",
+    "cookies": "Cookie di sessione",
+    "pollInterval": "Intervallo di interrogazione (minuti)",
+    "timeZone": "Fuso orario (facoltativo)",
+    "timeZone_help": "Nome IANA, ad esempio Europe/Berlin. Vuoto usa il fuso orario del sistema.",
+    "header_login": "Accesso",
+    "header_manual": "Alternativa: incollare i cookie di sessione",
+    "header_general": "Generale",
+    "help_login": "Salva le impostazioni e avvia l'istanza. L'adattatore mette quindi a disposizione una pagina di accesso all'indirizzo http://<IP dell'host ioBroker>:<porta>. L'indirizzo esatto viene scritto nel log e nello stato info.loginUrl. Aprilo su un telefono o computer nella rete di casa e accedi ad Amazon. In seguito l'adattatore rinnova la sessione da solo.",
+    "proxyOwnIp": "Indirizzo IP dell'host ioBroker (facoltativo)",
+    "proxyOwnIp_help": "Vuoto: rilevato automaticamente",
+    "proxyPort": "Porta della pagina di accesso"
+}

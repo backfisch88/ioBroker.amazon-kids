@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Potrzebne tylko wtedy, gdy strona logowania nie działa. Zaloguj się do Panelu rodzica w przeglądarce na komputerze, otwórz narzędzia deweloperskie (F12), przejdź do „Sieć”, odśwież stronę, kliknij pierwsze żądanie i skopiuj pełną wartość nagłówka żądania „cookie”. Wklej ją poniżej. Gdy Amazon zakończy sesję, trzeba to powtórzyć.",
+    "baseUrl": "Adres Panelu rodzica",
+    "cookies": "Pliki cookie sesji",
+    "pollInterval": "Interwał odpytywania (minuty)",
+    "timeZone": "Strefa czasowa (opcjonalnie)",
+    "timeZone_help": "Nazwa IANA, np. Europe/Berlin. Puste oznacza strefę czasową systemu.",
+    "header_login": "Logowanie",
+    "header_manual": "Alternatywa: wklej pliki cookie sesji",
+    "header_general": "Ogólne",
+    "help_login": "Zapisz ustawienia i uruchom instancję. Adapter udostępni wtedy stronę logowania pod adresem http://<IP hosta ioBroker>:<port>. Dokładny adres jest zapisywany w logu i w stanie info.loginUrl. Otwórz go na telefonie lub komputerze w sieci domowej i zaloguj się do Amazon. Potem adapter sam odnawia sesję.",
+    "proxyOwnIp": "Adres IP hosta ioBroker (opcjonalnie)",
+    "proxyOwnIp_help": "Puste: wykrywany automatycznie",
+    "proxyPort": "Port strony logowania"
+}

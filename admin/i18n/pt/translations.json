@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Só é necessário se a página de início de sessão não funcionar. Inicie sessão no Painel dos Pais num navegador de computador, abra as ferramentas de programador (F12), vá a \"Rede\", recarregue a página, clique no primeiro pedido e copie o valor completo do cabeçalho de pedido \"cookie\". Cole-o abaixo. Quando a Amazon terminar a sessão, terá de repetir este passo.",
+    "baseUrl": "Endereço do Painel dos Pais",
+    "cookies": "Cookies de sessão",
+    "pollInterval": "Intervalo de consulta (minutos)",
+    "timeZone": "Fuso horário (opcional)",
+    "timeZone_help": "Nome IANA, por exemplo Europe/Berlin. Vazio usa o fuso horário do sistema.",
+    "header_login": "Início de sessão",
+    "header_manual": "Alternativa: colar cookies de sessão",
+    "header_general": "Geral",
+    "help_login": "Guarde as definições e inicie a instância. O adaptador disponibiliza então uma página de início de sessão em http://<IP do anfitrião ioBroker>:<porta>. O endereço exato é escrito no registo e no estado info.loginUrl. Abra-o num telemóvel ou computador na sua rede doméstica e inicie sessão na Amazon. Depois disso, o adaptador renova a sessão sozinho.",
+    "proxyOwnIp": "Endereço IP do anfitrião ioBroker (opcional)",
+    "proxyOwnIp_help": "Vazio: detetado automaticamente",
+    "proxyPort": "Porta da página de início de sessão"
+}

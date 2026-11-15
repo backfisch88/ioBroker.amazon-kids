@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Nécessaire uniquement si la page de connexion ne fonctionne pas. Connectez-vous au Tableau de bord parents dans un navigateur de bureau, ouvrez les outils de développement (F12), allez dans « Réseau », rechargez la page, cliquez sur la première requête et copiez la valeur complète de l'en-tête de requête « cookie ». Collez-la ci-dessous. Lorsque Amazon met fin à la session, il faut recommencer.",
+    "baseUrl": "Adresse du Tableau de bord parents",
+    "cookies": "Cookies de session",
+    "pollInterval": "Intervalle d'interrogation (minutes)",
+    "timeZone": "Fuseau horaire (facultatif)",
+    "timeZone_help": "Nom IANA tel que Europe/Berlin. Vide : fuseau horaire du système.",
+    "header_login": "Connexion",
+    "header_manual": "Alternative : coller les cookies de session",
+    "header_general": "Général",
+    "help_login": "Enregistrez les paramètres et démarrez l'instance. L'adaptateur fournit alors une page de connexion à l'adresse http://<IP de l'hôte ioBroker>:<port>. L'adresse exacte est écrite dans le journal et dans l'état info.loginUrl. Ouvrez-la sur un téléphone ou un ordinateur de votre réseau domestique et connectez-vous à Amazon. L'adaptateur renouvelle ensuite la session lui-même.",
+    "proxyOwnIp": "Adresse IP de l'hôte ioBroker (facultatif)",
+    "proxyOwnIp_help": "Vide : détectée automatiquement",
+    "proxyPort": "Port de la page de connexion"
+}

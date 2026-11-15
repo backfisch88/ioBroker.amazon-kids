@@ -1,0 +1,15 @@
+{
+    "help_cookies": "Only needed if the login page does not work. Log in to the Parent Dashboard in a desktop browser, open the developer tools (F12), go to \"Network\", reload the page, click the first request and copy the complete value of the request header \"cookie\". Paste it below. When Amazon ends the session you have to repeat this.",
+    "baseUrl": "Parent Dashboard address",
+    "cookies": "Session cookies",
+    "pollInterval": "Polling interval (minutes)",
+    "timeZone": "Time zone (optional)",
+    "timeZone_help": "IANA name such as Europe/Berlin. Empty uses the system time zone.",
+    "header_login": "Login",
+    "header_manual": "Alternative: paste session cookies",
+    "header_general": "General",
+    "help_login": "Save the settings and start the instance. The adapter then provides a login page at http://<IP of the ioBroker host>:<port>. The exact address is written to the log and to the state info.loginUrl. Open it on a phone or computer in your home network and sign in to Amazon. The adapter renews the session on its own afterwards.",
+    "proxyOwnIp": "IP address of the ioBroker host (optional)",
+    "proxyOwnIp_help": "Empty: detected automatically",
+    "proxyPort": "Port of the login page"
+}

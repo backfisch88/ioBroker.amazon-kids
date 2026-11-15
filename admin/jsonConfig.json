@@ -1,0 +1,130 @@
+{
+    "i18n": true,
+    "type": "panel",
+    "items": {
+        "_headerGeneral": {
+            "type": "header",
+            "text": "header_general",
+            "size": 2,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "baseUrl": {
+            "type": "autocomplete",
+            "freeSolo": true,
+            "label": "baseUrl",
+            "options": [
+                "https://eltern.amazon.de",
+                "https://parents.amazon.com",
+                "https://parents.amazon.co.uk"
+            ],
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 6,
+            "xl": 6
+        },
+        "pollInterval": {
+            "type": "number",
+            "label": "pollInterval",
+            "min": 5,
+            "max": 1440,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 4,
+            "lg": 4,
+            "xl": 4
+        },
+        "timeZone": {
+            "type": "text",
+            "label": "timeZone",
+            "help": "timeZone_help",
+            "xs": 12,
+            "sm": 12,
+            "md": 4,
+            "lg": 4,
+            "xl": 4
+        },
+        "_headerLogin": {
+            "type": "header",
+            "text": "header_login",
+            "size": 2,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "_helpLogin": {
+            "type": "staticText",
+            "text": "help_login",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "proxyOwnIp": {
+            "type": "text",
+            "label": "proxyOwnIp",
+            "help": "proxyOwnIp_help",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 4,
+            "lg": 4,
+            "xl": 4
+        },
+        "proxyPort": {
+            "type": "number",
+            "label": "proxyPort",
+            "min": 1024,
+            "max": 65535,
+            "xs": 12,
+            "sm": 12,
+            "md": 4,
+            "lg": 4,
+            "xl": 4
+        },
+        "_headerManual": {
+            "type": "header",
+            "text": "header_manual",
+            "size": 2,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "_help": {
+            "type": "staticText",
+            "text": "help_cookies",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "cookies": {
+            "type": "password",
+            "label": "cookies",
+            "visible": true,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        }
+    }
+}
