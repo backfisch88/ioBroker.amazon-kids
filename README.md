@@ -125,6 +125,8 @@ Every night the adapter compares the rules at Amazon with the template and write
 - (backfisch88) Fix: device states are only created for devices that support the setting
 - (backfisch88) Fix: existing states also get updated units, ranges and defaults
 - (backfisch88) Changed: Amazon answers are shortened in the debug log
+- (backfisch88) Fix: profile and device IDs are unique when the case is ignored
+- (backfisch88) Changed: one contact email in package.json and io-package.json
 
 ### 0.1.1 (2026-11-15)
 

@@ -654,6 +654,30 @@ describe('adapter', () => {
         assert.deepStrictEqual(adapter.states.get('devices.Ben_s_Fire.musicFilter'), { val: true, ack: true });
     });
 
+    it('gives profiles that differ only in case different object IDs', async () => {
+        const sameName = (url, options) => {
+            if (
+                !url.includes('/ajax/') &&
+                !url.includes('get-device') &&
+                !url.includes('toggle') &&
+                url.startsWith('https://eltern.amazon.de') &&
+                !url.includes('/ajax')
+            ) {
+                return response(200, {
+                    text: page([
+                        { role: 'CHILD', firstName: 'Max', directedId: 'amzn1.account.AAA111' },
+                        { role: 'CHILD', firstName: 'max', directedId: 'amzn1.account.BBB222' },
+                    ]),
+                });
+            }
+            return dashboard(url, options);
+        };
+        const { adapter } = await start(config, sameName);
+        const ids = [...adapter.children.keys()];
+        assert.strictEqual(ids.length, 2);
+        assert.strictEqual(new Set(ids.map(id => id.toLowerCase())).size, 2);
+    });
+
     it('creates no device states when the device does not support the settings', async () => {
         const unsupported = (url, options) => {
             if (url.includes('get-device-volume')) {

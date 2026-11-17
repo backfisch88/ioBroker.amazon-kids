@@ -1033,14 +1033,17 @@ class AmazonKids extends utils.Adapter {
     async loadChildren() {
         const list = await this.client.getChildren();
         const children = new Map();
+        // IDs must differ even when the case is ignored
+        const usedIds = new Set();
         for (const child of list) {
             let objectId = sanitizeId(child.name) || sanitizeId(child.directedId.split('.').pop());
             if (!objectId) {
                 continue;
             }
-            if (children.has(objectId)) {
+            if (usedIds.has(objectId.toLowerCase())) {
                 objectId = `${objectId}_${sanitizeId(child.directedId.split('.').pop()).slice(-6)}`;
             }
+            usedIds.add(objectId.toLowerCase());
             children.set(objectId, child);
         }
         if (!children.size) {
@@ -1326,11 +1329,13 @@ class AmazonKids extends utils.Adapter {
     async loadDevices() {
         const list = await this.client.getKidsDevices();
         const devices = new Map();
+        const usedIds = new Set();
         for (const device of list) {
             let objectId = sanitizeId(device.name) || sanitizeId(device.deviceId).slice(-8);
-            if (devices.has(objectId)) {
+            if (usedIds.has(objectId.toLowerCase())) {
                 objectId = `${objectId}_${sanitizeId(device.deviceId).slice(-6)}`;
             }
+            usedIds.add(objectId.toLowerCase());
             devices.set(objectId, device);
         }
         await this.setObjectNotExistsAsync('devices', { type: 'folder', common: { name: 'Devices' }, native: {} });
