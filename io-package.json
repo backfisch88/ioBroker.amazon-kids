@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "amazon-kids",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
+            "0.1.2": {
+                "en": "device states only for supported devices, IDs unique ignoring case, state definitions updated on start",
+                "de": "Gerätedatenpunkte nur für unterstützte Geräte, IDs ohne Beachtung der Schreibweise eindeutig, Datenpunktdefinitionen beim Start aktualisiert",
+                "ru": "состояния устройств только для поддерживаемых устройств, уникальные ID без учёта регистра, определения состояний обновляются при запуске",
+                "pt": "estados de dispositivo apenas para dispositivos suportados, IDs únicos sem distinguir maiúsculas, definições de estados atualizadas ao iniciar",
+                "nl": "apparaatstatussen alleen voor ondersteunde apparaten, ID's uniek ongeacht hoofdletters, statusdefinities bijgewerkt bij het starten",
+                "fr": "états d'appareil uniquement pour les appareils pris en charge, ID uniques sans tenir compte de la casse, définitions d'états mises à jour au démarrage",
+                "it": "stati del dispositivo solo per dispositivi supportati, ID univoci senza distinguere maiuscole, definizioni degli stati aggiornate all'avvio",
+                "es": "estados de dispositivo solo para dispositivos compatibles, ID únicos sin distinguir mayúsculas, definiciones de estados actualizadas al iniciar",
+                "pl": "stany urządzeń tylko dla obsługiwanych urządzeń, unikalne ID bez względu na wielkość liter, definicje stanów aktualizowane przy starcie",
+                "uk": "стани пристроїв лише для підтримуваних пристроїв, унікальні ID без урахування регістру, визначення станів оновлюються під час запуску",
+                "zh-cn": "仅为受支持的设备创建设备状态，ID 不区分大小写且唯一，启动时更新状态定义"
+            },
             "0.1.1": {
                 "en": "maintenance: dependencies, translation format",
                 "de": "Wartung: Abhängigkeiten, Übersetzungsformat",

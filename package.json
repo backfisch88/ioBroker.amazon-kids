@@ -1,6 +1,6 @@
 {
     "name": "iobroker.amazon-kids",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Parental controls for Amazon Kids profiles on Fire tablets",
     "author": {
         "name": "Henrik Schönhofen",
