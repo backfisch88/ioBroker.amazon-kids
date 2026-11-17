@@ -410,6 +410,23 @@ const CHILD_STATES = [
 ];
 
 /**
+ * The technical part of a state definition, used to update existing objects.
+ * The name is left out, because users may rename objects.
+ *
+ * @param {Record<string, unknown>} common state definition
+ * @returns {Record<string, unknown>} type, role, access, unit, range and default
+ */
+function technicalCommon(common) {
+    const result = {};
+    for (const key of ['type', 'role', 'read', 'write', 'unit', 'min', 'max', 'def']) {
+        if (common[key] !== undefined) {
+            result[key] = common[key];
+        }
+    }
+    return result;
+}
+
+/**
  * @param {unknown} value text written by the user
  * @returns {string} website address with scheme, or an empty string
  */
@@ -781,7 +798,9 @@ class AmazonKids extends utils.Adapter {
     logCommand(text, answer) {
         this.log.info(text);
         if (answer) {
-            this.log.debug(`Amazon answered HTTP ${answer.status}${answer.body ? `: ${answer.body}` : ''}`);
+            this.log.debug(
+                `Amazon answered HTTP ${answer.status}${answer.body ? `: ${String(answer.body).slice(0, 200)}` : ''}`,
+            );
         }
     }
 
@@ -1083,8 +1102,7 @@ class AmazonKids extends utils.Adapter {
                 // (e.g. buttons), without touching names a user may have changed.
                 if (!this.checkedObjects.has(id)) {
                     this.checkedObjects.add(id);
-                    const { type, role, read, write } = def.common;
-                    await this.extendObject(id, { common: { type, role, read, write } });
+                    await this.extendObject(id, { common: technicalCommon(def.common) });
                 }
             }),
         );
@@ -1345,8 +1363,7 @@ class AmazonKids extends utils.Adapter {
             }
             this.checkedObjects.add(full);
             await this.setObjectNotExistsAsync(full, { type: 'state', common: def.common, native: {} });
-            const { type, role, read, write } = def.common;
-            await this.extendObject(full, { common: { type, role, read, write } });
+            await this.extendObject(full, { common: technicalCommon(def.common) });
         }
         await this.setStateChangedAsync(full, value, true);
     }

@@ -123,6 +123,8 @@ Every night the adapter compares the rules at Amazon with the template and write
 ### **WORK IN PROGRESS**
 
 - (backfisch88) Fix: device states are only created for devices that support the setting
+- (backfisch88) Fix: existing states also get updated units, ranges and defaults
+- (backfisch88) Changed: Amazon answers are shortened in the debug log
 
 ### 0.1.1 (2026-11-15)
 
