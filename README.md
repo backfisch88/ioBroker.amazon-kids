@@ -122,6 +122,8 @@ Every night the adapter compares the rules at Amazon with the template and write
 
 ### **WORK IN PROGRESS**
 
+- (backfisch88) Fix: device states are only created for devices that support the setting
+
 ### 0.1.1 (2026-11-15)
 
 - (backfisch88) Maintenance: dependencies, translation format

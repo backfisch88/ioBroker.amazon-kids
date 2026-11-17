@@ -654,6 +654,23 @@ describe('adapter', () => {
         assert.deepStrictEqual(adapter.states.get('devices.Ben_s_Fire.musicFilter'), { val: true, ack: true });
     });
 
+    it('creates no device states when the device does not support the settings', async () => {
+        const unsupported = (url, options) => {
+            if (url.includes('get-device-volume')) {
+                return response(200, { json: { isSupported: false, deviceVolume: null } });
+            }
+            if (url.includes('get-video-settings') || url.includes('get-music-settings')) {
+                return response(400, { text: '' });
+            }
+            return dashboard(url, options);
+        };
+        const { adapter } = await start(config, unsupported);
+        assert.deepStrictEqual([...adapter.devices.keys()], ['Ben_s_Fire']);
+        for (const id of ['volume', 'videoEnabled', 'musicEnabled', 'musicFilter']) {
+            assert.strictEqual(adapter.states.has(`devices.Ben_s_Fire.${id}`), false);
+        }
+    });
+
     it('sends the documented bodies for smart home, websites and devices', async () => {
         const { adapter, requests } = await start(config, dashboard);
         const child = 'amazon-kids.0.children.Ben.access';

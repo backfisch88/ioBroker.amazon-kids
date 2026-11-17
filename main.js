@@ -1322,19 +1322,33 @@ class AmazonKids extends utils.Adapter {
                 common: { name: device.name },
                 native: { deviceId: device.deviceId, deviceTypeId: device.deviceTypeId },
             });
-            for (const def of DEVICE_STATES) {
-                const id = `devices.${objectId}.${def.id}`;
-                await this.setObjectNotExistsAsync(id, { type: 'state', common: def.common, native: {} });
-                if (!this.checkedObjects.has(id)) {
-                    this.checkedObjects.add(id);
-                    const { type, role, read, write } = def.common;
-                    await this.extendObject(id, { common: { type, role, read, write } });
-                }
-            }
         }
         this.devices = devices;
         this.devicesLoadedAt = Date.now();
         this.log.debug(`Found ${devices.size} Kids devices`);
+    }
+
+    /**
+     * Creates a device state the first time Amazon answers for it, so that devices
+     * which do not support a setting get no state for it.
+     *
+     * @param {string} objectId device object ID
+     * @param {string} id state name, e.g. volume
+     * @param {unknown} value value to set
+     */
+    async setDeviceState(objectId, id, value) {
+        const full = `devices.${objectId}.${id}`;
+        if (!this.checkedObjects.has(full)) {
+            const def = DEVICE_STATES.find(item => item.id === id);
+            if (!def) {
+                return;
+            }
+            this.checkedObjects.add(full);
+            await this.setObjectNotExistsAsync(full, { type: 'state', common: def.common, native: {} });
+            const { type, role, read, write } = def.common;
+            await this.extendObject(full, { common: { type, role, read, write } });
+        }
+        await this.setStateChangedAsync(full, value, true);
     }
 
     async refreshDevices() {
@@ -1344,35 +1358,29 @@ class AmazonKids extends utils.Adapter {
             }
         });
         for (const [objectId, device] of this.devices) {
-            const base = `devices.${objectId}`;
+            // Amazon answers with an error or isSupported=false for devices without the setting
             await this.tryRead(`volume of ${device.name}`, async () => {
                 const data = await this.client.getDeviceSetting('volume', device);
                 const volume = Number(data?.deviceVolume);
-                await this.setStateChangedAsync(`${base}.volume`, Number.isFinite(volume) ? volume : null, true);
+                if (data?.isSupported !== false && data?.deviceVolume != null && Number.isFinite(volume)) {
+                    await this.setDeviceState(objectId, 'volume', volume);
+                }
             });
             await this.tryRead(`video settings of ${device.name}`, async () => {
                 const data = await this.client.getDeviceSetting('video', device);
                 const status = typeof data === 'string' ? data : data?.status;
-                await this.setStateChangedAsync(
-                    `${base}.videoEnabled`,
-                    typeof status === 'string' ? /^enabled$/i.test(status) : null,
-                    true,
-                );
+                if (typeof status === 'string' && status) {
+                    await this.setDeviceState(objectId, 'videoEnabled', /^enabled$/i.test(status));
+                }
             });
             await this.tryRead(`music settings of ${device.name}`, async () => {
                 const data = await this.client.getDeviceSetting('music', device);
-                await Promise.all([
-                    this.setStateChangedAsync(
-                        `${base}.musicEnabled`,
-                        typeof data?.musicEnabled === 'boolean' ? data.musicEnabled : null,
-                        true,
-                    ),
-                    this.setStateChangedAsync(
-                        `${base}.musicFilter`,
-                        typeof data?.elfEnabled === 'boolean' ? data.elfEnabled : null,
-                        true,
-                    ),
-                ]);
+                if (typeof data?.musicEnabled === 'boolean') {
+                    await this.setDeviceState(objectId, 'musicEnabled', data.musicEnabled);
+                }
+                if (typeof data?.elfEnabled === 'boolean') {
+                    await this.setDeviceState(objectId, 'musicFilter', data.elfEnabled);
+                }
             });
         }
     }
