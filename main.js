@@ -458,6 +458,8 @@ class AmazonKids extends utils.Adapter {
         this.goalStates = new Set();
         this.clockTimer = null;
         this.restoreTimer = null;
+        this.renewing = null;
+        this.refreshWarned = false;
         this.pausedUntil = new Map();
         this.checkedObjects = new Set();
         this.devices = new Map();
@@ -538,7 +540,12 @@ class AmazonKids extends utils.Adapter {
         if (this.client) {
             this.client.updateCookies(cookies);
         } else {
-            this.client = new ParentDashboard({ baseUrl: this.baseUrl, cookies, timeZone: this.getTimeZone() });
+            this.client = new ParentDashboard({
+                baseUrl: this.baseUrl,
+                cookies,
+                timeZone: this.getTimeZone(),
+                renew: () => this.renewSession(),
+            });
         }
     }
 
@@ -615,6 +622,29 @@ class AmazonKids extends utils.Adapter {
         await this.poll();
     }
 
+    /**
+     * Called by the client when the dashboard rejects the session. All requests
+     * that fail at the same time share one renewal.
+     *
+     * @returns {Promise<boolean>} false when the session cannot be renewed (manual cookies)
+     */
+    async renewSession() {
+        if (this.manualCookies || !this.session) {
+            return false;
+        }
+        if (!this.renewing) {
+            this.renewing = this.refreshSession().finally(() => {
+                this.renewing = null;
+            });
+        }
+        try {
+            await this.renewing;
+        } catch (error) {
+            throw new AuthError(`Session refresh failed: ${error.message}`);
+        }
+        return true;
+    }
+
     async refreshSession() {
         let timer;
         const timeout = new Promise((resolve, reject) => {
@@ -660,24 +690,16 @@ class AmazonKids extends utils.Adapter {
             if (renewable && Date.now() - (this.session.tokenDate || 0) > SESSION_REFRESH_MS) {
                 try {
                     await this.refreshSession();
+                    this.refreshWarned = false;
                 } catch (error) {
-                    this.log.debug(`Scheduled session refresh failed: ${error.message}`);
+                    // Requests renew the session again when the dashboard rejects it.
+                    if (!this.refreshWarned) {
+                        this.refreshWarned = true;
+                        this.log.warn(`Scheduled session refresh failed: ${error.message}`);
+                    }
                 }
             }
-            try {
-                await this.pollOnce();
-            } catch (error) {
-                if (!(error instanceof AuthError) || !renewable) {
-                    throw error;
-                }
-                // The dashboard rejected the cookies: renew them once and try again.
-                try {
-                    await this.refreshSession();
-                } catch (refreshError) {
-                    throw new AuthError(`Session refresh failed: ${refreshError.message}`);
-                }
-                await this.pollOnce();
-            }
+            await this.pollOnce();
             if (this.lastError) {
                 this.log.info('Connection to the Parent Dashboard restored');
                 this.lastError = '';

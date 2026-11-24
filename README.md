@@ -122,6 +122,9 @@ Every night the adapter compares the rules at Amazon with the template and write
 
 ### **WORK IN PROGRESS**
 
+- Fixed: commands rejected with HTTP 403 renew the session and are sent again
+- Changed: a failed scheduled session refresh is logged as warning
+
 ### 0.1.2 (2026-11-17)
 
 - (backfisch88) Fix: device states are only created for devices that support the setting

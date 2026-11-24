@@ -319,6 +319,25 @@ describe('adapter', () => {
         assert.strictEqual(adapter.timers.size, 0);
     });
 
+    it('renews the session when a command is rejected', async () => {
+        const first = await start(proxyConfig, dashboard);
+        amazon.finish({ localCookie: 'session-id=OLD', refreshToken: 'REFRESH', tokenDate: Date.now() });
+        await new Promise(resolve => setTimeout(resolve, 50));
+        first.adapter.onUnload(() => {});
+
+        // reads work with the old cookies, commands need the renewed ones
+        const { adapter, requests } = await start(proxyConfig, (url, init) =>
+            url.endsWith('/ajax/set-offscreen-time') && !init.headers.cookie.includes('RENEWED')
+                ? response(403)
+                : dashboard(url),
+        );
+        assert.strictEqual(amazon.refreshes, 0);
+        await adapter.onStateChange('amazon-kids.0.children.Ben.control.pause', { val: 10, ack: false });
+        assert.strictEqual(amazon.refreshes, 1);
+        assert.ok(adapter.logs.includes('info: Devices of Ben paused for 10 minutes'));
+        assert.ok(requests.filter(entry => entry.url.endsWith('/ajax/set-offscreen-time')).length >= 2);
+    });
+
     it('refuses a non Amazon address', async () => {
         const { adapter, requests } = await start({ ...config, baseUrl: 'https://example.com' }, dashboard);
         assert.strictEqual(requests.length, 0);

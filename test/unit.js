@@ -168,6 +168,29 @@ describe('ParentDashboard', () => {
         await assert.rejects(client.pauseDevices('id1', 5), AuthError);
         assert.strictEqual(calls.length, 2);
     });
+    it('renews the session once when the dashboard keeps rejecting a command', async () => {
+        let renewals = 0;
+        let renewed = false;
+        const { client, calls } = createClient(() => (renewed ? fakeResponse(200, { json: {} }) : fakeResponse(403)));
+        client.renew = async () => {
+            renewals++;
+            renewed = true;
+            return true;
+        };
+        await client.pauseDevices('id1', 5);
+        assert.strictEqual(renewals, 1);
+        assert.strictEqual(calls.length, 3);
+    });
+    it('reports a rejection when the renewed session is rejected as well', async () => {
+        let renewals = 0;
+        const { client } = createClient(() => fakeResponse(403));
+        client.renew = async () => {
+            renewals++;
+            return true;
+        };
+        await assert.rejects(client.pauseDevices('id1', 5), AuthError);
+        assert.strictEqual(renewals, 1);
+    });
     it('never puts cookies into error messages', async () => {
         const { client } = createClient(() => fakeResponse(500));
         await assert.rejects(client.getTimeLimits('id1'), error => !/TOK|session-id/.test(error.message));
