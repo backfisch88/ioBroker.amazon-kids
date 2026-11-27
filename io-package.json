@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "amazon-kids",
-        "version": "0.1.2",
+        "version": "0.1.3",
         "news": {
+            "0.1.3": {
+                "en": "rejected commands renew the session and are sent again",
+                "de": "abgelehnte Befehle erneuern die Sitzung und werden erneut gesendet",
+                "ru": "отклонённые команды обновляют сессию и отправляются повторно",
+                "pt": "comandos rejeitados renovam a sessão e são enviados novamente",
+                "nl": "geweigerde opdrachten vernieuwen de sessie en worden opnieuw verzonden",
+                "fr": "les commandes rejetées renouvellent la session et sont renvoyées",
+                "it": "i comandi rifiutati rinnovano la sessione e vengono inviati di nuovo",
+                "es": "los comandos rechazados renuevan la sesión y se envían de nuevo",
+                "pl": "odrzucone polecenia odnawiają sesję i są wysyłane ponownie",
+                "uk": "відхилені команди оновлюють сесію та надсилаються повторно",
+                "zh-cn": "被拒绝的命令会更新会话并重新发送"
+            },
             "0.1.2": {
                 "en": "device states only for supported devices, IDs unique ignoring case, state definitions updated on start",
                 "de": "Gerätedatenpunkte nur für unterstützte Geräte, IDs ohne Beachtung der Schreibweise eindeutig, Datenpunktdefinitionen beim Start aktualisiert",
